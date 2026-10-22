@@ -1,0 +1,11 @@
+fastapi>=0.110,<1.0
+uvicorn[standard]>=0.29
+sqlalchemy[asyncio]>=2.0,<2.1
+alembic>=1.13
+asyncpg>=0.29
+aiosqlite>=0.20
+pydantic[email]>=2.6
+pydantic-settings>=2.2
+PyJWT>=2.8
+bcrypt>=4.1
+redis>=5.0
