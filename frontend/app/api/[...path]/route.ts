@@ -5,10 +5,11 @@
  */
 
 import { type NextRequest } from "next/server";
+import { resolveBackendUrl } from "@/lib/backend-url";
 
 export const dynamic = "force-dynamic";
 
-const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:8000";
+const BACKEND_URL = resolveBackendUrl(process.env.BACKEND_URL, process.env.BACKEND_HOSTPORT);
 const HOP_BY_HOP = new Set(["connection", "keep-alive", "transfer-encoding", "content-length", "host", "content-encoding"]);
 
 async function proxy(request: NextRequest, { params }: { params: { path: string[] } }): Promise<Response> {

@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { resolveBackendUrl } from "@/lib/backend-url";
 
-const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:8000";
+const BACKEND_URL = resolveBackendUrl(process.env.BACKEND_URL, process.env.BACKEND_HOSTPORT);
 const PROTECTED = ["/dashboard", "/onboarding", "/admin", "/accept-invite"];
 const AUTH_PAGES = ["/login", "/signup"];
 

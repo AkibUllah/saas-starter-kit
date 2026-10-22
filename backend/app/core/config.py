@@ -49,6 +49,16 @@ class Settings(BaseSettings):
             raise ValueError("APP_SECRET_KEY must be set in production")
         return v
 
+    @field_validator("database_url")
+    @classmethod
+    def _normalise_database_url(cls, value: str) -> str:
+        """Managed Postgres (Render, Heroku) hands out ``postgres://`` or ``postgresql://`` URLs;
+        the async engine needs the asyncpg driver spelled out."""
+        for prefix in ("postgres://", "postgresql://"):
+            if value.startswith(prefix):
+                return "postgresql+asyncpg://" + value[len(prefix) :]
+        return value
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]

@@ -5,8 +5,9 @@
 
 import { cookies } from "next/headers";
 import type { Org, User } from "./types";
+import { resolveBackendUrl } from "./backend-url";
 
-export const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:8000";
+export const BACKEND_URL = resolveBackendUrl(process.env.BACKEND_URL, process.env.BACKEND_HOSTPORT);
 export const ORG_COOKIE = "org_id";
 
 function cookieHeader(): string {
