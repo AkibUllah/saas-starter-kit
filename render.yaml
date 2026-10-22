@@ -1,0 +1,69 @@
+# Render blueprint: FastAPI API + Next.js web app + managed PostgreSQL + Key Value (Redis-compatible).
+# The API container runs `alembic upgrade head`, seeds the demo accounts (SEED_DEMO=true) and starts
+# uvicorn on PORT. The web app reaches the API over Render's private network via BACKEND_HOSTPORT;
+# if your plan does not route private traffic to the API, set BACKEND_URL on the web service to the
+# API's public https URL instead (it takes precedence).
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: saas-starter-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: "8000"
+      - key: APP_ENV
+        value: production
+      - key: APP_LOG_JSON
+        value: "true"
+      - key: APP_COOKIE_SECURE
+        value: "true"
+      - key: SEED_DEMO
+        value: "true"
+      - key: APP_DATABASE_URL
+        fromDatabase:
+          name: saas-starter-db
+          property: connectionString
+      - key: APP_REDIS_URL
+        fromService:
+          type: keyvalue
+          name: saas-starter-redis
+          property: connectionString
+      - key: APP_SECRET_KEY
+        generateValue: true
+      - key: APP_BILLING_WEBHOOK_SECRET
+        generateValue: true
+
+  - type: web
+    name: saas-starter-web
+    runtime: docker
+    plan: free
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: "3000"
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: BACKEND_HOSTPORT
+        fromService:
+          type: web
+          name: saas-starter-api
+          property: hostport
+
+  - type: keyvalue
+    name: saas-starter-redis
+    plan: free
+    ipAllowList: []
+
+databases:
+  - name: saas-starter-db
+    plan: free
+    databaseName: saas
+    user: saas

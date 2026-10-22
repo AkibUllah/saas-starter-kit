@@ -10,6 +10,16 @@ A multi-tenant SaaS starter: a FastAPI backend (async SQLAlchemy, Alembic, Postg
 ![Next.js](https://img.shields.io/badge/Next.js-14.2-black)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+## Try it live
+
+| | |
+|---|---|
+| API reference | https://akibullah.github.io/saas-starter-kit/ — Swagger UI built from the backend's exported OpenAPI document (static; no backend behind it) |
+| Run in your browser | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/AkibUllah/saas-starter-kit?quickstart=1) — starts Postgres, Redis, the API and the Next.js dev server with `docker compose`, runs `alembic upgrade head` and the seed script; open forwarded port 3000 for the app and 8000 at `/api/v1/docs` for the API. |
+| Demo login | `demo@saaskit.dev` / `Demo1234!` (owner of Acme Dhaka) · `admin@saaskit.dev` / `Admin1234!` (platform admin) — see [Demo accounts](#demo-accounts-created-by-the-seed-script) |
+| One-click deploy | [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/AkibUllah/saas-starter-kit) — `render.yaml` provisions the API (migrates and seeds on start), the Next.js web app, a free PostgreSQL and a Key Value store; secrets are generated. |
+| Local | `docker compose up` (see Quick Start) |
+
 ## Why this exists
 
 Every B2B product I have built, from merchant dashboards for payment gateways to retail back-offices, needed the same foundation before the first real feature: tenants, roles, invites, API keys for integrators, a plan table that the API actually enforces, a billing webhook that is idempotent, and an audit trail that support can read. Getting the security details right (rotating refresh tokens, cookies the browser can't read from JavaScript, cross-tenant ids that look like 404s) takes longer than the features themselves. This repo is that foundation, written once, tested, and runnable with one compose command.

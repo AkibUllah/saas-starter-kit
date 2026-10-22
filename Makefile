@@ -2,7 +2,7 @@ BACKEND := backend
 FRONTEND := frontend
 PY := $(BACKEND)/.venv/bin
 
-.PHONY: install install-backend install-frontend up down logs prod migrate seed dev-backend dev-frontend test test-backend test-frontend lint fmt build clean
+.PHONY: install install-backend install-frontend up down logs prod migrate seed openapi dev-backend dev-frontend test test-backend test-frontend lint fmt build clean
 
 install: install-backend install-frontend
 
@@ -31,6 +31,9 @@ migrate:
 
 seed:
 	cd $(BACKEND) && .venv/bin/python -m scripts.seed
+
+openapi:
+	cd $(BACKEND) && .venv/bin/python scripts/export_openapi.py ../openapi.json
 
 dev-backend:
 	cd $(BACKEND) && .venv/bin/uvicorn app.main:app --reload --port 8000
