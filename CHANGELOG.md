@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-25
+
+### Fixed
+
+- The seed script no longer prints the demo account passwords; it points to the README's Demo accounts table instead (CodeQL `py/clear-text-logging-sensitive-data`).
+- CodeQL skips test directories, whose throwaway secrets were reported as weak password hashing.
+
 ### Added
 
 - API reference and curl-session screenshots in the README.
@@ -39,5 +46,6 @@ First public release.
 
 - Database and backend URLs resolve correctly on managed hosts (deploy-friendly URL handling).
 
-[Unreleased]: https://github.com/AkibUllah/saas-starter-kit/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/AkibUllah/saas-starter-kit/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/AkibUllah/saas-starter-kit/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/AkibUllah/saas-starter-kit/releases/tag/v0.1.0

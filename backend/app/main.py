@@ -62,7 +62,7 @@ def create_app(settings: Settings | None = None, *, ctx: AppContext | None = Non
 
     app = FastAPI(
         title=f"{settings.app_name} API",
-        version="0.1.0",
+        version="0.1.1",
         description=(
             "Multi-tenant SaaS backend: auth, organizations, team invites, "
             "API keys, plans, billing, audit."
