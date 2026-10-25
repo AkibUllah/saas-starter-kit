@@ -4,6 +4,8 @@
 A multi-tenant SaaS starter: a FastAPI backend (async SQLAlchemy, Alembic, Postgres, Redis) and a Next.js 14 App Router frontend, with organizations, roles, team invites, API keys, plan limits, mock billing with signed webhooks, an audit log and an admin area already wired together.
 
 [![CI](https://github.com/AkibUllah/saas-starter-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/AkibUllah/saas-starter-kit/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/AkibUllah/saas-starter-kit/actions/workflows/codeql.yml/badge.svg)](https://github.com/AkibUllah/saas-starter-kit/actions/workflows/codeql.yml)
+[![Release](https://img.shields.io/github/v/release/AkibUllah/saas-starter-kit)](https://github.com/AkibUllah/saas-starter-kit/releases)
 ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11-blue)
 ![Node](https://img.shields.io/badge/node-18%20%7C%2020-339933)
 ![FastAPI](https://img.shields.io/badge/FastAPI-async-009688)
@@ -169,8 +171,8 @@ saas-starter-kit/
 ## Testing
 
 ```bash
-make test-backend    # 43 pytest tests
-make test-frontend   # 21 vitest tests
+make test-backend    # 48 pytest tests
+make test-frontend   # 25 vitest tests
 make lint            # ruff, ruff format --check, next lint, tsc --noEmit
 make build           # next build
 ```
@@ -181,11 +183,11 @@ Frontend tests cover the API client (single refresh-and-retry on expired tokens,
 
 ## Roadmap
 
-- Real provider adapters (Stripe, SSLCommerz) behind the existing `MockBillingProvider` interface, plus seat-based pricing
-- SMTP / SES mailer and HTML email templates
-- SSO (OIDC) for the Business plan, which the entitlements table already exposes as a feature flag
-- Background worker for webhook retries and scheduled period-end cancellations
-- Playwright end-to-end tests for signup, invite and upgrade
+- [ ] Real provider adapters (Stripe, SSLCommerz) behind the existing `MockBillingProvider` interface, plus seat-based pricing (#1)
+- [ ] SMTP / SES mailer and HTML email templates (#2)
+- [ ] SSO (OIDC) for the Business plan, which the entitlements table already exposes as a feature flag (#3)
+- [ ] Background worker for webhook retries and scheduled period-end cancellations (#4)
+- [ ] Playwright end-to-end tests for signup, invite and upgrade (#5)
 
 ## License
 
