@@ -1,0 +1,7 @@
+name: CodeQL config
+
+# Test code is not shipped; it calls security helpers with throwaway secrets,
+# which the sensitive-data queries would otherwise report as findings.
+paths-ignore:
+  - backend/tests
+  - frontend/__tests__
