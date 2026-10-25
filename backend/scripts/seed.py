@@ -72,8 +72,8 @@ async def main() -> None:
             banner(
                 [
                     "Demo data already present.",
-                    f"demo@saaskit.dev / {DEMO_PASSWORD}",
-                    f"admin@saaskit.dev / {ADMIN_PASSWORD}",
+                    "Accounts: demo@saaskit.dev, admin@saaskit.dev",
+                    "Passwords: see 'Demo accounts' in the README",
                 ]
             )
             await engine.dispose()

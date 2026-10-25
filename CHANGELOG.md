@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- The seed script no longer prints the demo account passwords; it points to the README's Demo accounts table instead (CodeQL `py/clear-text-logging-sensitive-data`).
+- The seed script no longer prints the demo account passwords (in either the fresh-seed or the already-seeded banner); it points to the README's Demo accounts table instead (CodeQL `py/clear-text-logging-sensitive-data`).
 - CodeQL skips test directories, whose throwaway secrets were reported as weak password hashing.
 
 ### Added
