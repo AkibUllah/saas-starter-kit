@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "saas-starter-backend"
-version = "0.1.0"
+version = "0.1.1"
 description = "Multi-tenant SaaS backend: auth, organizations, invites, API keys, plans and entitlements, mock billing, audit log, admin."
 requires-python = ">=3.10"
 license = { text = "MIT" }
